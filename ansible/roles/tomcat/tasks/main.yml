@@ -1,4 +1,8 @@
 ---
+- name: Install ACL
+  apt:
+    name: acl
+    state: installed
 - name: Download Tomcat
   become: yes
   become_user: "{{learner_user}}"
