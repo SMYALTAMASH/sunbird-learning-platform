@@ -1,11 +1,3 @@
-- name: checking the list of installed services
-  service_facts:
-
-- name: Stop the monit
-  service: name=monit state=stopped
-  become: yes
-  when: ansible_facts.services.monit is defined
-
 - name: Stop tomcat
   become: yes
   service: name=tomcat state=stopped
@@ -59,8 +51,3 @@
   become_user: "{{learner_user}}"
   fail: msg="Health check failed for learning-service"
   when: "learning_process.stdout >= '1'"
-
-- name: Start the monit
-  service: name=monit state=started
-  become: yes
-  when: ansible_facts.services.monit is defined
