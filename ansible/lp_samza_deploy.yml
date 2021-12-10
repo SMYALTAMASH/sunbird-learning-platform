@@ -1,9 +1,4 @@
 ---
-- name: install acl
-  apt:
-    name: acl
-    state: installed
-    
 - name: "Start Nodemanager on Slaves"
   hosts: "yarn-slave"
   vars:
@@ -12,6 +7,10 @@
     - "{{inventory_dir}}/secrets.yml"
   become: yes
   tasks:
+    - name: install acl
+      apt:
+        name: acl
+        state: installed
     - name: Ensure yarn nodemanager is running
       become_user: hduser
       shell: |
